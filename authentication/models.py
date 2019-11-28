@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -31,4 +33,7 @@ class Profile(models.Model):
     @property
     def consumed_calories_today(self):
         """Returns the value of calories added by user today"""
-        pass
+        consumed_calories = 0
+        for item in self.food_items.filter(created_at=datetime.date.today()):
+            consumed_calories = consumed_calories + item.calories_value
+        return consumed_calories

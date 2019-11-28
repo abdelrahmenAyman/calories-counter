@@ -9,3 +9,4 @@ class FoodItem(models.Model):
 
     name = models.CharField(max_length=150)
     calories_value = models.IntegerField()
+    created_at = models.DateField(auto_now_add=True)
