@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 
 from authentication.models import Profile
 from authentication import serializers
-from authentication import permissions
+from hci import permissions
 
 
 class AuthenticationViewSet(viewsets.GenericViewSet):

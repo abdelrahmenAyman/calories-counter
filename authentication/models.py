@@ -37,3 +37,19 @@ class Profile(models.Model):
         for item in self.food_items.filter(created_at=datetime.date.today()):
             consumed_calories = consumed_calories + item.calories_value
         return consumed_calories
+
+    @property
+    def first_name(self):
+        return self.user.first_name
+
+    @property
+    def last_name(self):
+        return self.user.last_name
+
+    @property
+    def email(self):
+        return self.user.email
+
+    def update_consumed_calories(self, value):
+        self.consumed_calories = self.consumed_calories + value
+        self.save()

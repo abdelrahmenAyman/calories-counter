@@ -3,6 +3,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth import authenticate, login, get_user_model
 
 from authentication.models import Profile
+from hci.serializers import FoodItemSerializer
 
 
 User = get_user_model()
@@ -46,3 +47,13 @@ class RegisterUserSerializer(serializers.Serializer):
     def create(self, validated_data):
         del validated_data['confirm_password']
         return Profile.objects.create(**validated_data)
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+
+    food_items = FoodItemSerializer(many=True)
+
+    class Meta:
+        model = Profile
+        fields = ('pk', 'first_name', 'last_name', 'email', 'allowed_calories_per_day',
+                  'consumed_calories', 'consumed_calories_today', 'food_items')
