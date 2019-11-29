@@ -8,9 +8,9 @@
   5. visit localhost:8000/ to browse through API.
 
 ## API urls:
-  login: /auth/login/
-  register: /auth/register/
-  logout: /auth/register/
-  add food item: /add-food-item/
-  retrieve user info: /auth/users/<pk>/
+  - login: /auth/login/
+  - register: /auth/register/
+  - logout: /auth/register/
+  - add food item: /add-food-item/
+  - retrieve user info: /auth/users/[pk]/
  
