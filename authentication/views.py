@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import mixins
 from django.contrib.auth import logout
 
 from authentication.models import Profile
@@ -45,3 +47,12 @@ class AuthenticationViewSet(viewsets.GenericViewSet):
     def logout_user(self, request):
         logout(request)
         return Response({'detail': 'Logged Out Successfully'})
+
+
+class ProfileViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
+
+    serializer_class = serializers.ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Profile.objects.filter(user=self.request.user)
